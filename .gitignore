@@ -1,0 +1,3 @@
+venv
+dataset/NSFWdf.xlsx
+*.pyc
