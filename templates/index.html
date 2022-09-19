@@ -23,10 +23,8 @@
       }
       .main-div {
         margin-top: 50px;
+        margin-bottom: 100px;
         text-align: center;
-      }
-      .submit-form {
-        margin-top: 20px;
       }
       .submit-btn {
         margin-top: 15px;
@@ -70,13 +68,15 @@
     <div class="main-div">
       <h1>Select Category</h1>
       <img
-        src="https://media.necn.com/images/620*349/DIT_NAT_PELOSI_110618-154156918536700002.jpg"
+        src="{{img_url}}"
         alt="Nature"
         class="responsive"
       />
+      <h4>Row - {{row_index}}</h4>
       <div class="d-flex flex-row justify-content-center">
         <form class="submit-form" method="POST">
           {% csrf_token %}
+          <input type="number" hidden value="{{row_index}}" name="row_index"/>
           <div class="form-body">
             <div class="radio-input">
               <input

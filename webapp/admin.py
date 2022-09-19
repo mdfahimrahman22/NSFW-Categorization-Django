@@ -1,3 +1,4 @@
 from django.contrib import admin
+from webapp.models import RowTrack
 
-# Register your models here.
+admin.site.register(RowTrack)

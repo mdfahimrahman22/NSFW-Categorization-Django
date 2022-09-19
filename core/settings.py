@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from openpyxl import load_workbook
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+wb = load_workbook('dataset/NSFW test.xlsx')
+ws = wb['Sheet1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webapp'
 ]
 
 MIDDLEWARE = [
