@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-wb = load_workbook('dataset/NSFW test.xlsx')
+wb = load_workbook('dataset/NSFW test 1.xlsx')
 ws = wb['Sheet1']
 # Application definition
 

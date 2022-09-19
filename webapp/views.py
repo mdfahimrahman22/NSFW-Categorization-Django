@@ -18,7 +18,7 @@ def home(request):
     if request.method == 'POST':
         cell_nsfw_category = 'I'+request.POST['row_index']
         ws[cell_nsfw_category] = request.POST['radio-btn-input']
-        wb.save('dataset/NSFW test.xlsx')
+        wb.save('dataset/NSFW test 1.xlsx')
         row.current_index = int(request.POST['row_index'])+1
         row.save()
         return redirect('home')
