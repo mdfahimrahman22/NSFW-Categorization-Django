@@ -6,9 +6,9 @@ services:
     build:
       context: .
     restart: always
-    command: bash -c "python manage.py runserver 0.0.0.0:8095"
+    command: bash -c "python manage.py runserver 0.0.0.0:8096"
     volumes:
       - .:/app
     ports:
-      - "8095:8095"
+      - "8096:8096"
 
