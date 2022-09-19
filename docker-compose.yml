@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+  edgecourse_website_project:
+    container_name: NSFW-categorization-django
+    build:
+      context: .
+    restart: always
+    command: bash -c "python manage.py runserver 0.0.0.0:8095"
+    volumes:
+      - .:/app
+    ports:
+      - "8095:8095"
+

@@ -69,29 +69,17 @@
       <h1>Select Category</h1>
       <img
         src="{{img_url}}"
-        alt="Nature"
+        alt="{{img_url}}"
         class="responsive"
       />
+      
       <h4>Row - {{row_index}}</h4>
       <div class="d-flex flex-row justify-content-center">
         <form class="submit-form" method="POST">
           {% csrf_token %}
           <input type="number" hidden value="{{row_index}}" name="row_index"/>
           <div class="form-body">
-            <div class="radio-input">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radio-btn-input"
-                id="flexRadioDefault1"
-                value="SFW"
-                checked="checked"
-              />
-              <label class="form-check-label" for="flexRadioDefault1">
-                SFW
-              </label>
-            </div>
-
+            
             <div class="radio-input">
               <input
                 class="form-check-input"
@@ -99,6 +87,7 @@
                 name="radio-btn-input"
                 id="flexRadioDefault2"
                 value="Pornography"
+                checked="checked"
               />
               <label class="form-check-label" for="flexRadioDefault2">
                 Pornography
@@ -128,6 +117,30 @@
               />
               <label class="form-check-label" for="flexRadioDefault4">
                 Malignant Stereotypes
+              </label>
+            </div>
+            <div class="radio-input">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="radio-btn-input"
+                id="flexRadioDefault1"
+                value="Unsure"
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                Unsure
+              </label>
+            </div>
+            <div class="radio-input">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="radio-btn-input"
+                id="flexRadioDefault1"
+                value="SFW"
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                SFW
               </label>
             </div>
           </div>
