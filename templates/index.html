@@ -18,13 +18,14 @@
         max-height: 400px;
         height: auto;
         margin-top: 15px;
-        padding-left: 10px;
-        padding-right: 10px;
+        
       }
       .main-div {
         margin-top: 10px;
         margin-bottom: 100px;
         text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
       }
       .submit-btn {
         margin-top: 15px;
@@ -62,6 +63,9 @@
       .round {
         border-radius: 50%;
       }
+      .text-align-l{
+        text-align: left;
+      }
     </style>
   </head>
   <body>
@@ -72,8 +76,13 @@
         alt="{{img_url}}"
         class="responsive"
       />
+
+      <div >
+          <p class="mb-0">Text: {{img_text}} </p>
+          <p class="mb-0">Row: {{row_index}}</p>
+      </div>
       
-      <h4>Row - {{row_index}}</h4>
+      
       <div class="d-flex flex-row justify-content-center">
         <form class="submit-form" method="POST">
           {% csrf_token %}

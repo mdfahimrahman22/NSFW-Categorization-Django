@@ -10,10 +10,13 @@ def home(request):
 
     cell_img_url = 'D'+str(current_index)
     img_url = ws[cell_img_url].value
-
+    cell_text = 'E'+str(current_index)
+    img_text=ws[cell_text].value
+    
     context = {
         'row_index': current_index,
-        'img_url': img_url
+        'img_url': img_url,
+        'img_text':img_text
     }
     if request.method == 'POST':
         cell_nsfw_category = 'K'+request.POST['row_index']
