@@ -18,7 +18,6 @@
         max-height: 400px;
         height: auto;
         margin-top: 15px;
-        
       }
       .main-div {
         margin-top: 10px;
@@ -42,53 +41,155 @@
         display: inline-block;
         padding: 8px 16px;
       }
-      
+
       a:hover {
-        background-color: #ddd;
         color: black;
       }
-      
+
       .previous {
         background-color: #f1f1f1;
         color: black;
         margin-right: 10px;
       }
-      
-      .next {
-        background-color: #04AA6D;
-        color: white;
 
+      .next {
+        background-color: #04aa6d;
+        color: white;
       }
-      
+
       .round {
         border-radius: 50%;
       }
-      .text-align-l{
+      .text-align-l {
         text-align: left;
+      }
+      @media all and (min-width: 992px) {
+        .navbar .nav-item .dropdown-menu {
+          display: none;
+        }
+        .navbar .nav-item:hover .nav-link {
+        }
+        .navbar .nav-item:hover .dropdown-menu {
+          display: block;
+        }
+        .navbar .nav-item .dropdown-menu {
+          margin-top: 0;
+        }
+      }
+      .notification {
+        //color: black;
+        text-decoration: none;
+        padding: 2px 2px;
+        position: relative;
+        display: inline-block;
+        border-radius: 2px;
+      }
+      .notification .badge {
+        position: absolute;
+        top: -2px;
+        right: -28px;
+        padding: 5px 10px;
+        border-radius: 50%;
+        background: #428ef7;
+        color: white;
+      }
+      .dropdown-menu{
+        min-width: 215px;
       }
     </style>
   </head>
   <body>
-    <div class="main-div">
-      <h1>Select Category</h1>
-      <img
-        src="{{img_url}}"
-        alt="{{img_url}}"
-        class="responsive"
-      />
-
-      <div >
-          <p class="mb-0">Text: {{img_text}} </p>
-          <p class="mb-0">Row: {{row_index}}</p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">NSFW!</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{% url 'home' %}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Summery
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li class="dropdown-item">
+                  <div class="notification">
+                    <span>Pornography</span>
+                    <span class="badge">{{row.pornography_count}}</span>
+                  </div>
+                </li>
+                <li class="dropdown-item">
+                  <div class="notification">
+                    <span>Misogyny</span>
+                    <span class="badge">{{row.misogyny_count}}</span>
+                  </div>
+                </li>
+                <li class="dropdown-item">
+                  <div class="notification">
+                    <span>Malignant Stereotypes</span>
+                    <span class="badge"
+                      >{{row.malignant_stereotypes_count}}</span
+                    >
+                  </div>
+                </li>
+                <li class="dropdown-item">
+                  <div class="notification">
+                    <span>Malign</span>
+                    <span class="badge">{{row.malign_count}}</span>
+                  </div>
+                </li>
+                <li class="dropdown-item">
+                  <div class="notification">
+                    <span>Delete</span>
+                    <span class="badge">{{row.delete_count}}</span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-      
-      
+    </nav>
+    <div class="main-div">
+      {% comment %} <h1>Select Category</h1> {% endcomment %}
+      <img src="{{img_url}}" alt="{{img_url}}" class="responsive" />
+
+      <div>
+        <p class="mb-0">Text: {{img_text}}</p>
+        <p class="mb-0">Row: {{row.current_index}}</p>
+      </div>
+
       <div class="d-flex flex-row justify-content-center">
         <form class="submit-form" method="POST">
           {% csrf_token %}
-          <input type="number" hidden value="{{row_index}}" name="row_index"/>
+          <input type="number" hidden value="{{row.current_index}}" name="row_index" />
           <div class="form-body">
-            
             <div class="radio-input">
               <input
                 class="form-check-input"
@@ -128,6 +229,20 @@
                 Malignant Stereotypes
               </label>
             </div>
+
+            <div class="radio-input">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="radio-btn-input"
+                id="flexRadioDefault6"
+                value="Malign"
+              />
+              <label class="form-check-label" for="flexRadioDefault6">
+                Malign
+              </label>
+            </div>
+
             <div class="radio-input">
               <input
                 class="form-check-input"
@@ -140,18 +255,6 @@
                 Delete
               </label>
             </div>
-            {% comment %} <div class="radio-input">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radio-btn-input"
-                id="flexRadioDefault1"
-                value="SFW"
-              />
-              <label class="form-check-label" for="flexRadioDefault1">
-                SFW
-              </label>
-            </div>  {% endcomment %}
           </div>
 
           <button type="submit" class="btn btn-primary submit-btn">
@@ -160,10 +263,12 @@
         </form>
       </div>
 
-      {% comment %} <div class="d-flex flex-row justify-content-center">
+      {% comment %}
+      <div class="d-flex flex-row justify-content-center">
         <a href="#" class="previous">&laquo; Previous</a>
         <a href="#" class="next">Next &raquo;</a>
-      </div> {% endcomment %}
+      </div>
+      {% endcomment %}
     </div>
 
     <script
